@@ -1,0 +1,42 @@
+{
+    "name": "boxuk/dictator-woocommerce",
+    "description": "WooCommerce state for Dictator",
+    "authors": [
+        {
+            "name" : "Box UK",
+            "email": "developers@boxuk.com",
+            "homepage": "https://www.boxuk.com"
+        }
+    ],
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.2",
+        "boxuk/dictator": "^0.2"
+    },
+    "autoload": {
+        "files": [ "dictator-woocommerce.php" ],
+        "psr-4": {
+            "BoxUk\\DictatorWooCommerce\\": "src/"
+        }
+    },
+    "require-dev": {
+        "wp-cli/wp-cli-bundle": "^2.4"
+    },
+    "scripts": {
+        "behat": "run-behat-tests",
+        "behat-rerun": "rerun-behat-tests",
+        "lint": "run-linter-tests",
+        "phpcs": "run-phpcs-tests",
+        "phpunit": "run-php-unit-tests",
+        "prepare-tests": "install-package-tests",
+        "test": [
+            "@lint",
+            "@phpcs",
+            "@phpunit",
+            "@behat"
+        ]
+    }
+}

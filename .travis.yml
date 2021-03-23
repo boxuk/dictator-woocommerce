@@ -1,0 +1,40 @@
+language: php
+
+branches:
+    only:
+        - main
+
+services:
+    - mysql
+
+cache:
+    directories:
+        - "/home/travis/.composer/cache"
+
+env:
+    global:
+        - PATH="$TRAVIS_BUILD_DIR/vendor/bin:$PATH"
+        - WP_CLI_BIN_DIR="$TRAVIS_BUILD_DIR/vendor/bin"
+        - WP_CLI_TEST_DBROOTUSER=root
+        - WP_CLI_TEST_DBROOTPASS=''
+        - WP_CLI_TEST_DBUSER=wp_cli_test
+        - WP_CLI_TEST_DBPASS=password1
+        - WP_CLI_TEST_DBHOST=127.0.0.1
+
+install:
+    - composer install
+    - composer prepare-tests
+
+script:
+    - composer behat || composer behat-rerun
+
+jobs:
+    include:
+        -   stage: lint
+            script:
+                - composer lint
+                - composer phpcs
+            env: BUILD=lint
+        -   stage: test
+            php: 7.4
+            env: WP_VERSION=latest
