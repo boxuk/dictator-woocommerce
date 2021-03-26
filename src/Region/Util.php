@@ -10,7 +10,7 @@ trait Util {
 	 *
 	 * @return string
 	 */
-	public static function normalise_option( string $option ): string {
+	public static function normalise_option( $option ) {
 		if ( strpos( $option, 'woocommerce_' ) !== 0 ) {
 			$option = 'woocommerce_' . $option;
 		}

@@ -204,7 +204,7 @@ final class WoocommerceNetworkSites extends Network_Sites {
 	 * @param string $name Option name.
 	 * @return mixed|void
 	 */
-	public function get( string $name ) {
+	public function get( $name ) {
 
 		$site_slug = $this->current_schema_attribute_parents[0];
 		$site      = $this->get_site( $site_slug );
