@@ -34,7 +34,11 @@ jobs:
             script:
                 - composer lint
                 - composer phpcs
+            php: 5.6
             env: BUILD=lint
+        -   stage: test
+            php: 5.6
+            env: WP_VERSION=latest
         -   stage: test
             php: 7.4
             env: WP_VERSION=latest
