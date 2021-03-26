@@ -45,7 +45,7 @@ final class SiteGeneralSettings extends Region {
 	 * @param string $name Option name.
 	 * @return mixed|void
 	 */
-	public function get( string $name ) {
+	public function get( $name ) {
 		switch ( $name ) {
 			case 'specific_allowed_countries':
 			case 'specific_ship_to_countries':

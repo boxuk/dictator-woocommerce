@@ -47,7 +47,7 @@ final class SiteAdvancedSettings extends Region {
 	 * @param string $name Option name.
 	 * @return mixed|void
 	 */
-	public function get( string $name ) {
+	public function get( $name ) {
 		switch ( $name ) {
 			case 'force_ssl_checkout':
 			case 'unforce_ssl_checkout':

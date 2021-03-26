@@ -45,7 +45,7 @@ final class SiteShippingSettings extends Region {
 	 * @param string $name Option name.
 	 * @return mixed|void
 	 */
-	public function get( string $name ) {
+	public function get( $name ) {
 		switch ( $name ) {
 			case 'shipping_cost_requires_address':
 			case 'shipping_debug_mode':

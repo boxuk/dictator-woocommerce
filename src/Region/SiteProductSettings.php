@@ -56,7 +56,7 @@ final class SiteProductSettings extends Region {
 	 * @param string $name Option name.
 	 * @return mixed|void
 	 */
-	public function get( string $name ) {
+	public function get( $name ) {
 		switch ( $name ) {
 			case 'cart_redirect_after_add':
 			case 'review_rating_verification_required':

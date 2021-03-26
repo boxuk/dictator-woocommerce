@@ -51,7 +51,7 @@ final class SiteAccountsSettings extends Region {
 	 * @param string $name Option name.
 	 * @return mixed|void
 	 */
-	public function get( string $name ) {
+	public function get( $name ) {
 		switch ( $name ) {
 			case 'delete_inactive_accounts':
 			case 'trash_pending_orders':
