@@ -14,7 +14,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=5.6",
-        "boxuk/dictator": "^0.2"
+        "boxuk/dictator": "~0.2"
     },
     "autoload": {
         "files": [ "dictator-woocommerce.php" ],
