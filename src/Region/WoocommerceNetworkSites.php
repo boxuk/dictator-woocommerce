@@ -76,7 +76,10 @@ final class WoocommerceNetworkSites extends Network_Sites {
 	 * @return true|WP_Error
 	 */
 	public function impose( $key, $value ) {
-		$site = $this->get_site( $key );
+		$custom_domain = isset( $value['custom_domain'] ) ? $value['custom_domain'] : '';
+		$site_slug     = $this->get_site_slug( get_current_site(), $key, $custom_domain );
+
+		$site = $this->get_site( $site_slug );
 		if ( ! $site ) {
 			$site = $this->create_site( $key, $value );
 			if ( is_wp_error( $site ) ) {
