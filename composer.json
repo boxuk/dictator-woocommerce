@@ -23,7 +23,8 @@
         }
     },
     "require-dev": {
-        "wp-cli/wp-cli-bundle": "^2.4"
+        "wp-cli/wp-cli-bundle": "^2.4",
+        "wp-cli/wp-cli-tests": "^3.0"
     },
     "scripts": {
         "behat": "run-behat-tests",
