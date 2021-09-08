@@ -50,12 +50,12 @@ trait GeneralSettings {
 				'_required'     => false,
 				'_get_callback' => 'get',
 			),
-			'all_except_countries'  => array(
+			'all_except_countries'        => array(
 				'_type'         => 'array',
 				'_required'     => false,
 				'_get_callback' => 'get',
 			),
-			'ship_to_countries'           => array(
+			'ship_to_countries'            => array(
 				'_type'         => 'text',
 				'_required'     => false,
 				'_get_callback' => 'get',
