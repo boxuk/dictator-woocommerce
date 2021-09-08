@@ -215,6 +215,7 @@ final class WoocommerceNetworkSites extends Network_Sites {
 		switch_to_blog( $site->blog_id );
 		switch ( $name ) {
 			case 'specific_allowed_countries':
+			case 'all_except_countries':
 			case 'specific_ship_to_countries':
 			case 'delete_inactive_accounts':
 			case 'trash_pending_orders':

@@ -48,6 +48,7 @@ final class SiteGeneralSettings extends Region {
 	public function get( $name ) {
 		switch ( $name ) {
 			case 'specific_allowed_countries':
+			case 'all_except_countries':
 			case 'specific_ship_to_countries':
 				return get_option( self::normalise_option( $name ), array() );
 			case 'calc_taxes':
