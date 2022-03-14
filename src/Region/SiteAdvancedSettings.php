@@ -1,83 +1,90 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BoxUk\DictatorWooCommerce\Region;
 
-use Dictator;
-use Dictator\Regions\Region;
+use BoxUk\Dictator\Region\Region;
+use BoxUk\Dictator\Utils;
 
-final class SiteAdvancedSettings extends Region {
-	use Util;
-	use AdvancedSettings;
+final class SiteAdvancedSettings extends Region
+{
+    use Util;
+    use AdvancedSettings;
 
-	/**
-	 * Return our schema.
-	 *
-	 * @return array
-	 */
-	public function get_schema() {
-		return $this->advanced_settings_schema;
-	}
+    /**
+     * Return our schema.
+     *
+     * @return array
+     */
+    public function getSchema(): array
+    {
+        return $this->advancedSettingsSchema;
+    }
 
-	/**
-	 * Sets data.
-	 *
-	 * @param null  $_ Unused.
-	 * @param mixed $options Options to impose.
-	 * @return bool
-	 */
-	public function impose( $_, $options ) {
-		foreach ( $options as $option => $content ) {
-			switch ( $option ) {
-				case 'force_ssl_checkout':
-				case 'unforce_ssl_checkout':
-				case 'api_enabled':
-				case 'allow_tracking':
-				case 'show_marketplace_suggestions':
-					$content = $content === true ? 'yes' : 'no';
-			}
-			update_option( self::normalise_option( $option ), $content );
-		}
+    /**
+     * Sets data.
+     *
+     * @param null $_ Unused.
+     * @param mixed $options Options to impose.
+     */
+    public function impose($_, $options): void
+    {
+        foreach ($options as $option => $content) {
+            switch ($option) {
+                case 'force_ssl_checkout':
+                case 'unforce_ssl_checkout':
+                case 'api_enabled':
+                case 'allow_tracking':
+                case 'show_marketplace_suggestions':
+                    $content = $content === true ? 'yes' : 'no';
+            }
+            update_option(self::normalizeOption($option), $content);
+        }
+    }
 
-		return true;
-	}
+    /**
+     * Retrieves option name.
+     *
+     * @param string $name Option name.
+     *
+     * @return mixed|void
+     */
+    public function get(string $name)
+    {
+        switch ($name) {
+            case 'force_ssl_checkout':
+            case 'unforce_ssl_checkout':
+            case 'api_enabled':
+            case 'allow_tracking':
+                $yes_or_no = get_option(self::normalizeOption($name), 'no');
 
-	/**
-	 * Retrieves option name.
-	 *
-	 * @param string $name Option name.
-	 * @return mixed|void
-	 */
-	public function get( $name ) {
-		switch ( $name ) {
-			case 'force_ssl_checkout':
-			case 'unforce_ssl_checkout':
-			case 'api_enabled':
-			case 'allow_tracking':
-				$yes_or_no = get_option( self::normalise_option( $name ), 'no' );
-				return $yes_or_no === 'yes';
-			case 'show_marketplace_suggestions':
-				$yes_or_no = get_option( self::normalise_option( $name ), 'yes' );
-				return $yes_or_no === 'yes';
-		}
+                return $yes_or_no === 'yes';
+            case 'show_marketplace_suggestions':
+                $yes_or_no = get_option(self::normalizeOption($name), 'yes');
 
-		return get_option( self::normalise_option( $name ) );
-	}
+                return $yes_or_no === 'yes';
+        }
 
-	/**
-	 * Calculates diff.
-	 *
-	 * @return array
-	 */
-	public function get_differences() {
-		$result = array(
-			'dictated' => $this->get_imposed_data(),
-			'current'  => $this->get_current_data(),
-		);
+        return get_option(self::normalizeOption($name));
+    }
 
-		if ( Dictator::array_diff_recursive( $result['dictated'], $result['current'] ) ) {
-			return array( 'option' => $result );
-		}
+    /**
+     * Calculates diff.
+     *
+     * @return array
+     */
+    public function getDifferences(): array
+    {
+        $result = [
+            'dictated' => $this->getImposedData(),
+            'current' => $this->getCurrentData(),
+        ];
 
-		return array();
-	}
+        if (Utils::arrayDiffRecursive($result['dictated'], $result['current'])) {
+            return ['option' => $result];
+        }
+
+        return [];
+    }
 }

@@ -13,8 +13,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=5.6",
-        "boxuk/dictator": "~0.2"
+        "php": "^7.4 || ^8.0 || ^8.1",
+        "boxuk/dictator": "dev-master@dev"
     },
     "autoload": {
         "files": [ "dictator-woocommerce.php" ],
@@ -22,9 +22,15 @@
             "BoxUk\\DictatorWooCommerce\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "BoxUk\\DictatorWooCommerce\\Tests\\": "tests/"
+        }
+    },
     "require-dev": {
         "wp-cli/wp-cli-bundle": "^2.4",
-        "wp-cli/wp-cli-tests": "^3.0"
+        "wp-cli/wp-cli-tests": "^3.0",
+        "phpunit/phpunit": "^9.5"
     },
     "scripts": {
         "behat": "run-behat-tests",
@@ -38,6 +44,14 @@
             "@phpcs",
             "@phpunit",
             "@behat"
-        ]
+        ],
+        "install-tools": "@composer update -W --working-dir=tools/php-cs-fixer",
+        "php-cs-fixer:test": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --diff --dry-run",
+        "php-cs-fixer:fix": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --diff"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
