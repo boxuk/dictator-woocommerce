@@ -2,6 +2,12 @@
 
 ## Installation
 
+### WP-CLI package
+
+`wp package install boxuk/dictator-woocommerce`
+
+### Composer package
+
 `composer req boxuk/dictator-woocommerce`
 
 ## Usage
