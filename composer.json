@@ -29,7 +29,7 @@
     },
     "require-dev": {
         "wp-cli/wp-cli-bundle": "^2.4",
-        "wp-cli/wp-cli-tests": "^3.0",
+        "wp-cli/wp-cli-tests": "^4.3",
         "phpunit/phpunit": "^9.5"
     },
     "scripts": {
